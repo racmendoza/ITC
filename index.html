@@ -1,6 +1,48 @@
 <!DOCTYPE html>
 <html>
-  <body>
-    <p style="text-align:center">Conversions</p>
-  </body>
+	<body>
+    	<h1>Income Tax Calculator</h1>
+        
+        <label>Taxable Income:</label>
+        <input type ="number" id="taxableInc" onkeyup="computeTax()">
+    <br>
+        <label>Tax Payable:</label>
+        <input type ="number" id="incomeTax" readonly>
+        
+    </body>
+    
+    <script>
+    	function computeTax(){
+        	let taxableInc, incomeTax;
+            
+            taxableInc = document.getElementById("taxableInc").value*1;
+            
+            if(taxableInc<=250000)
+   			{
+        		incomeTax = 0;
+    		}
+    		else if(taxableInc<=400000)
+    		{
+        		incomeTax = (taxableInc-250000)*0.2;
+    		}
+    		else if(taxableInc<=800000)
+    		{
+		        incomeTax = 30000+((taxableInc-400000)*0.25);
+    		}
+    		else if(taxableInc<=2000000)
+    		{
+        		incomeTax = 130000+((taxableInc-800000)*0.30);
+    		}
+   		 	else if(taxableInc<=8000000)
+    		{
+      			incomeTax = 490000+((taxableInc-2000000)*0.32);
+   			}
+    		else
+    		{
+        		incomeTax = 2410000+((taxableInc-8000000)*0.35);
+    		}
+            
+            document.getElementById("incomeTax").value = incomeTax;
+            }
+    </script>
 </html>
