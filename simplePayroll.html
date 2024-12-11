@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>PLACEHOLDER SHOPPING CART TO PAYROLL 8:25</title>
+    <title>SAMPLE PAYROLL 9:14</title>
   </head>
-  <body onload="initcart()">
+  <body onload="intherecord()">
     <h1>Simple Shopping Cart Version #2 - Using HTML Tables to Display the Cart</h1>
     <br>
     <p>
@@ -12,157 +12,119 @@
     <br>
     <p>
       <label for="name">Employee Name:</label>
-        <input id="name" type="text" ">
+        <input id="name" type="text">
+        <br>
       <label for="days">Days Worked:</label>
-        <input id="days" type="number" ">
+        <input id="days" type="number">
+        <br>
       <label for="rate">Daily Rate:</label>
-        <input id="rate" type="number" ">
+        <input id="rate" type="number">
+        <br>
       <label for="grossPay">Gross Pay:</label>
         <input id="grossPay" type="number" readonly="">
+        <br>
       <label for="ddx">Deduction:</label>
-        <input id="ddx" type="number" ">
-      <button id="addtocart">Add to Cart</button>
+        <input id="ddx" type="number">
+        <br>
+      <button id="addtorecord">Add to Cart</button>
     </p>
     <p>
       <label for="count">Employee Records:</label>
       <input id="count" type="number" readonly="">
-      <button id="clearcart">Clear Cart</button>
+      <button id="clearrecord">Clear Cart</button>
       <label for="deleteCount">Delete Employee Record:</label>
       <input id="deleteCount"type="number">
       <button id="confirmDelete">Delete</button>
     </p>
-    <p id="cart"></p>
+    <p id="record"></p>
   </body>
-  <script>
-
-
-
-    // Initialize cart CALLED ALSO IN BODY ONLOAD      
-    function initcart(){
-        cart=[];
-        document.getElementById("count").value=cart.length;
-        document.getElementById("cart").innerHTML="";
-
-            
+  <script>    
+    function intherecord(){
+        record=[];
+        document.getElementById("count").value=record.length;
+        document.getElementById("record").innerHTML="";  
     }
-
     document.getElementById("days").addEventListener("keyup",()=>   
      {  
         grosspaymentcomputation();
+        netpaymentcomputation();
      });
-
     document.getElementById("rate").addEventListener("keyup",()=>   
      {  
         grosspaymentcomputation();
+        netpaymentcomputation();
      });
-
     document.getElementById("ddx").addEventListener("keyup",()=>   
      {  
         netpaymentcomputation();
      });
-  
-    // Clear Cart
-     document.getElementById("clearcart").addEventListener("click",()=>   
+     document.getElementById("clearrecord").addEventListener("click",()=>   
        {
         var toclear;
-
         toclear=confirm("Delete all Employee(s) from Record?");
-
         if (toclear) {
-             initcart();
+             intherecord();
          }
-            
       });
-
-    // Add item to cart
-  document.getElementById("addtocart").addEventListener("click",()=>   
+  document.getElementById("addtorecord").addEventListener("click",()=>   
        {
-        
-         var cartno = {
+         var recordno = {
              "count": "1",
              "rate": 0,
              "days": 1,
+             "ddx": 0,
             "grossPay" : function grossPay(){
                  return Math.round(this.rate*this.days*100)/100;  
-               }
+               },
             "netPay" : function netPay(){
-                 return Math.round((this.grossPay-this.ddx)*100)/100;
+                 return Math.round((this.grossPay()-this.ddx)*100)/100;
                }
             };
-
-          cartno.count=document.getElementById("name").value;
-          cartno.days=document.getElementById("days").value;
-          cartno.rate=document.getElementById("rate").value;
-
-          console.log(cartno.count);
-          console.log(cartno.days);
-          console.log(cartno.rate);
-
-
-           cart.push(cartno);
-          //cart[cart.length]=cartno;
-
-          console.log(cart.length);
-          document.getElementById("count").value=cart.length;
-
-          showcart();
-
+          recordno.count=document.getElementById("name").value;
+          recordno.days=document.getElementById("days").value;
+          recordno.rate=document.getElementById("rate").value;
+          recordno.ddx=document.getElementById("ddx").value;
+          console.log(recordno.count);
+          console.log(recordno.days);
+          console.log(recordno.rate);
+          console.log(recordno.ddx);
+           record.push(recordno);
+          console.log(record.length);
+          document.getElementById("count").value=record.length;
+          showrecord();
     });
-
-    // Compute Gross Pay per Item
     function grosspaymentcomputation() {
           var d,p,a;
           d = document.getElementById("days").value*1;
           p = document.getElementById("rate").value*1;
-
           a = Math.round(d*p*100)/100;  // rounds off to 2 decimal places
-
           console.log(a);
-
           document.getElementById("grossPay").value=a;
-          netpaymentcomputation();
     }
-    // Compute Net Pay per Item
     function netpaymentcomputation() {
-          var x,y,z;
-          x = document.getElementById("grossPay").value*1;
-          y = document.getElementById("ddx").value*1;
-
-          z = Math.round((x-y)*100)/100; //rounds off to 2 decimal places
-
-          console.log(z);
-
-          document.getElementById("netPay").value=z;
-    }    
-    
-    // Delete item from chart
+          var d,p,x,n;
+          d = document.getElementById("days").value*1;
+          p = document.getElementById("rate").value*1;
+          x = document.getElementById("ddx").value*1;
+          n = Math.round(((d*p)-x)*100)/100;  // rounds off to 2 decimal places
+          console.log(n);
+          document.getElementById("netPay").value=n;
+    }
   document.getElementById("confirmDelete").addEventListener("click",()=>   
       {
-    
         var todelete;
         var employeeNo;
-
         employeeNo=document.getElementById("deleteCount").value;
-
         todelete=confirm("Delete Employee No. "+employeeNo+"?");
-
         if (todelete) {
-
-            cart.splice(employeeNo-1,1);
-            document.getElementById("count").value=cart.length;
-             showcart();   
+            record.splice(employeeNo-1,1);
+            document.getElementById("count").value=record.length;
+             showrecord();   
         }
-
     });
-
-    // Show the contents of the cart
-    function showcart(){
-
-        var i,l,carttext,ln;
+    function showrecord(){
+        var i,l,recordtext,ln;
         var theader,tbody,tb;
-
-    
-        // Generate table header;
         theader ="<thead>";
           theader+="<tr>";
             theader+="<th>No.</th>";
@@ -174,34 +136,23 @@
             theader+="<th>Net Pay</th>";
           theader+="</tr>";
         theader+="</thead>";
-        
-        // Generate Table Body
-        l = cart.length;
-      
-        
-        for (i=0,carttext="",tbody='';i<l;i++){
+        l = record.length;
+        for (i=0,recordtext="",tbody='';i<l;i++){
             ln=i+1;    
             tbody += "<tr>"
                 +'<td>'+ln+' </td>'
-                +'<td>'+cart[i].count+' </td>'
-                +'<td style="text-align:center">'+cart[i].days+'</td>'
-                +'<td style="text-align:center">'+cart[i].rate+'</td>'
-                +'<td style="text-align:center">'+cart[i].grossPay()+'</td>'
-                +'<td style="text-align:center">'+cart[i].ddx()+'</td>'
-                +'<td style="text-align:center">'+cart[i].netPay()+'</td>'
+                +'<td>'+record[i].count+' </td>'
+                +'<td style="text-align:center">'+record[i].days+'</td>'
+                +'<td style="text-align:center">'+record[i].rate+'</td>'
+                +'<td style="text-align:center">'+record[i].grossPay()+'</td>'
+                +'<td style="text-align:center">'+record[i].ddx+'</td>'
+                +'<td style="text-align:center">'+record[i].netPay()+'</td>'
                 +"</tr>";
         }
-
        console.log(theader+tbody);
-        document.getElementById("cart").innerHTML=
+        document.getElementById("record").innerHTML=
            "<table>"+theader+tbody+"</table>";
-
-
     }
-  
-// Global variable
-var cart = []; 
-
-
+var record = []; 
   </script>
 </html>
