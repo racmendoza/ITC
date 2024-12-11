@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>PLACEHOLDER SHOPPING CART TO PAYROLL 6:57</title>
+    <title>PLACEHOLDER SHOPPING CART TO PAYROLL 7:00</title>
   </head>
   <body onload="initcart()">
     <h1>Simple Shopping Cart Version #2 - Using HTML Tables to Display the Cart</h1>
@@ -19,8 +19,8 @@
         <option value="toothpaste">toothpaste</option>
         <option value="noodles">noodles</option>
       </select>
-      <label for="qty">Quantity:</label>
-        <input id="qty" name="qty" type="number" ">
+      <label for="days">Days Worked:</label>
+        <input id="days" name="days" type="number" ">
       <label for="price">Unit Price:</label>
         <input id="price" name="price" type="number" "="">
       <label for="amount">Amount:</label>
@@ -50,7 +50,7 @@
             
     }
 
-    document.getElementById("qty").addEventListener("keyup",()=>   
+    document.getElementById("days").addEventListener("keyup",()=>   
      {  
         computeamount();
      });
@@ -80,18 +80,18 @@
          var cartitem = {
              "item": "1",
              "price": 0,
-             "qty": 1,
+             "days": 1,
             "itemamount" : function itemamount(){
-                 return Math.round(this.price*this.qty*100)/100;  
+                 return Math.round(this.price*this.days*100)/100;  
                }
             };
 
           cartitem.item=document.getElementById("itemselect").value;
-          cartitem.qty=document.getElementById("qty").value;
+          cartitem.days=document.getElementById("days").value;
           cartitem.price=document.getElementById("price").value;
 
           console.log(cartitem.item);
-          console.log(cartitem.qty);
+          console.log(cartitem.days);
           console.log(cartitem.price);
 
 
@@ -108,7 +108,7 @@
     // Compute Amount per Item
     function computeamount() {
           var q,p,q;
-          q = document.getElementById("qty").value*1;
+          q = document.getElementById("days").value*1;
           p = document.getElementById("price").value*1;
 
           a = Math.round(q*p*100)/100;  // rounds off to 2 decimal places
@@ -151,7 +151,7 @@
         theader+="<tr>";
         theader+="<th>No.</th>";
         theader+='<th style="text-align:left" >Item</th>';
-        theader+="<th>Quantity</th>";
+        theader+="<th>Days Worked</th>";
         theader+='<th style="text-align:right">Price</th>';
         theader+="<th>Amount</th>";
         theader+="</tr>";
@@ -166,7 +166,7 @@
             tbody += "<tr>"
                 +'<td>'+ln+' </td>'
                 +'<td>'+cart[i].item+' </td>'
-                +'<td style="text-align:right">'+cart[i].qty+'</td>'
+                +'<td style="text-align:right">'+cart[i].days+'</td>'
                 +'<td style="text-align:right">'+cart[i].price+'</td>'
                 +'<td style="text-align:right">'+cart[i].itemamount()+'</td>'                
                 +"</tr>";
