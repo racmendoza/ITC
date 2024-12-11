@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>PLACEHOLDER SHOPPING CART TO PAYROLL 7:03</title>
+    <title>PLACEHOLDER SHOPPING CART TO PAYROLL 7:19</title>
   </head>
   <body onload="initcart()">
     <h1>Simple Shopping Cart Version #2 - Using HTML Tables to Display the Cart</h1>
@@ -11,20 +11,14 @@
     </p>
     <br>
     <p>
-      <label for="itemselect">Choose an Item:</label>
-      <select id="itemselect">
-        <option value="sardines">sardines</option>
-        <option value="hotdog">hotdog</option>
-        <option value="shampoo">shampoo</option>
-        <option value="toothpaste">toothpaste</option>
-        <option value="noodles">noodles</option>
-      </select>
+      <label for="name">Employee Name:</label>
+        <input id="name" type="text" ">
       <label for="days">Days Worked:</label>
-        <input id="days" name="days" type="number" ">
+        <input id="days" type="number" ">
       <label for="price">Unit Price:</label>
-        <input id="price" name="price" type="number" "="">
+        <input id="price" type="number" ">
       <label for="amount">Amount:</label>
-        <input id="amount" name="amount" type="number" readonly="">
+        <input id="amount" type="number" readonly="">
       <button id="addtocart">Add to Cart</button>
     </p>
     <p>
@@ -86,7 +80,7 @@
                }
             };
 
-          cartitem.item=document.getElementById("itemselect").value;
+          cartitem.item=document.getElementById("name").value;
           cartitem.days=document.getElementById("days").value;
           cartitem.price=document.getElementById("price").value;
 
