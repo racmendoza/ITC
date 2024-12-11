@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>PLACEHOLDER SHOPPING CART TO PAYROLL 7:35</title>
+    <title>PLACEHOLDER SHOPPING CART TO PAYROLL 7:37</title>
   </head>
   <body onload="initcart()">
     <h1>Simple Shopping Cart Version #2 - Using HTML Tables to Display the Cart</h1>
@@ -15,8 +15,8 @@
         <input id="name" type="text" ">
       <label for="days">Days Worked:</label>
         <input id="days" type="number" ">
-      <label for="price">Unit Price:</label>
-        <input id="price" type="number" ">
+      <label for="rate">Daily Rate:</label>
+        <input id="rate" type="number" ">
       <label for="amount">Amount:</label>
         <input id="amount" type="number" readonly="">
       <button id="addtocart">Add to Cart</button>
@@ -49,7 +49,7 @@
         computeamount();
      });
 
-    document.getElementById("price").addEventListener("keyup",()=>   
+    document.getElementById("rate").addEventListener("keyup",()=>   
      {  
         computeamount();
      });
@@ -73,20 +73,20 @@
         
          var cartno = {
              "count": "1",
-             "price": 0,
+             "rate": 0,
              "days": 1,
             "employeeCount" : function employeeCount(){
-                 return Math.round(this.price*this.days*100)/100;  
+                 return Math.round(this.rate*this.days*100)/100;  
                }
             };
 
           cartno.count=document.getElementById("name").value;
           cartno.days=document.getElementById("days").value;
-          cartno.price=document.getElementById("price").value;
+          cartno.rate=document.getElementById("rate").value;
 
           console.log(cartno.count);
           console.log(cartno.days);
-          console.log(cartno.price);
+          console.log(cartno.rate);
 
 
            cart.push(cartno);
@@ -103,7 +103,7 @@
     function computeamount() {
           var d,p,d;
           d = document.getElementById("days").value*1;
-          p = document.getElementById("price").value*1;
+          p = document.getElementById("rate").value*1;
 
           a = Math.round(d*p*100)/100;  // rounds off to 2 decimal places
 
@@ -146,7 +146,7 @@
         theader+="<th>No.</th>";
         theader+='<th style="text-align:left" >Employee</th>';
         theader+="<th>Days Worked</th>";
-        theader+='<th style="text-align:right">Price</th>';
+        theader+='<th style="text-align:right">Rate</th>';
         theader+="<th>Amount</th>";
         theader+="</tr>";
         theader+="</thead>";
@@ -161,7 +161,7 @@
                 +'<td>'+ln+' </td>'
                 +'<td>'+cart[i].count+' </td>'
                 +'<td style="text-align:right">'+cart[i].days+'</td>'
-                +'<td style="text-align:right">'+cart[i].price+'</td>'
+                +'<td style="text-align:right">'+cart[i].rate+'</td>'
                 +'<td style="text-align:right">'+cart[i].employeeCount()+'</td>'                
                 +"</tr>";
                        
