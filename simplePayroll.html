@@ -17,8 +17,8 @@
         <input id="days" type="number" ">
       <label for="rate">Daily Rate:</label>
         <input id="rate" type="number" ">
-      <label for="amount">Amount:</label>
-        <input id="amount" type="number" readonly="">
+      <label for="netPay">Net Pay:</label>
+        <input id="netPay" type="number" readonly="">
       <button id="addtocart">Add to Cart</button>
     </p>
     <p>
@@ -46,12 +46,12 @@
 
     document.getElementById("days").addEventListener("keyup",()=>   
      {  
-        computeamount();
+        netpaymentcomputation();
      });
 
     document.getElementById("rate").addEventListener("keyup",()=>   
      {  
-        computeamount();
+        netpaymentcomputation();
      });
   
     // Clear Cart
@@ -99,8 +99,8 @@
 
     });
 
-    // Compute Amount per Item
-    function computeamount() {
+    // Compute Net Pay per Item
+    function netpaymentcomputation() {
           var d,p,d;
           d = document.getElementById("days").value*1;
           p = document.getElementById("rate").value*1;
@@ -109,7 +109,7 @@
 
           console.log(a);
 
-          document.getElementById("amount").value=a;
+          document.getElementById("netPay").value=a;
         
     }    
     
@@ -136,7 +136,7 @@
     // Show the contents of the cart
     function showcart(){
 
-        var i,l,carttext,totalamount,ln;
+        var i,l,carttext,totalpay,ln;
         var theader,tbody,tb,tfooter;
 
     
@@ -147,7 +147,7 @@
         theader+='<th style="text-align:left" >Employee</th>';
         theader+="<th>Days Worked</th>";
         theader+='<th style="text-align:right">Rate</th>';
-        theader+="<th>Amount</th>";
+        theader+="<th>Net Pay</th>";
         theader+="</tr>";
         theader+="</thead>";
         
@@ -155,7 +155,7 @@
         l = cart.length;
       
         
-        for (i=0,totalamount=0,carttext="",tbody='';i<l;i++){
+        for (i=0,totalpay=0,carttext="",tbody='';i<l;i++){
             ln=i+1;    
             tbody += "<tr>"
                 +'<td>'+ln+' </td>'
@@ -165,7 +165,7 @@
                 +'<td style="text-align:right">'+cart[i].employeeCount()+'</td>'                
                 +"</tr>";
                        
-            totalamount+=cart[i].employeeCount();
+            totalpay+=cart[i].employeeCount();
           
 
         }
@@ -178,8 +178,8 @@
         tfooter+='<th style="text-align:left">'+cart.length+'</th>';
         tfooter+='<th style="text-align:left">Employees</th>';
         tfooter+='<th></th>';
-        tfooter+='<th>Total Amount</th>';
-        tfooter+='<th style="text-align:right">'+totalamount+'</th>';
+        tfooter+='<th>Total Net Pay</th>';
+        tfooter+='<th style="text-align:right">'+totalpay+'</th>';
         tfooter+="</tr>";
         tfooter+="</tfoot>";
 
