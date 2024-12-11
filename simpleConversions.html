@@ -20,18 +20,6 @@ body {
   padding-top: 20px;
 }
 
-.sidenav a {
-  padding: 6px 8px 6px 16px;
-  text-decoration: none;
-  font-size: 25px;
-  color: #818181;
-  display: block;
-}
-
-.sidenav a:hover {
-  color: #f1f1f1;
-}
-
 .main {
   margin-left: 220px;
   margin-right: 100px;
@@ -72,23 +60,18 @@ div {font-family: "Audiowide", sans-serif;}
 
 .custom-select {
   position: relative;
-  font-family: Audiowide;
-}
-
-.custom-select {
-  position: relative;
   font-family: Arial;
+  font-size: 20px;
 }
 
 .custom-select select {
-  display: none; /*hide original SELECT element: */
+  display: none; 
 }
 
 .select-selected {
   background-color: #AD9C4A;
 }
 
-/* Style the arrow inside the select element: */
 .select-selected:after {
   position: absolute;
   content: "";
@@ -100,13 +83,11 @@ div {font-family: "Audiowide", sans-serif;}
   border-color: #fff transparent transparent transparent;
 }
 
-/* Point the arrow upwards when the select box is open (active): */
 .select-selected.select-arrow-active:after {
   border-color: transparent transparent #fff transparent;
   top: 7px;
 }
 
-/* style the items (options), including the selected item: */
 .select-items div,.select-selected {
   color: #ffffff;
   padding: 8px 16px;
@@ -115,7 +96,6 @@ div {font-family: "Audiowide", sans-serif;}
   cursor: pointer;
 }
 
-/* Style items (options): */
 .select-items {
   position: absolute;
   background-color: #AD9C4A;
@@ -187,7 +167,7 @@ input[type="number"] {
   .item6 {grid-area:6/1/6/1;}
 }
 
-div {font-size:12px;}
+
 </style>
 </head>
 <body>
@@ -203,9 +183,9 @@ div {font-size:12px;}
     	<p style="margin:auto">Simple Conversions</p>
     </div>
     <div class="item3">
-    	<div class="custom-select" style="width:200;margin:auto">
+    	<div class="custom-select">
     		<select id="comp">
-			<option value="0">Select a Conversion</option>
+				<option value="0">Select a Conversion</option>
     			<option value="1">Fahrenheit to Celsius</option>
         		<option value="2">Celsius to Fahrenheit</option>
         		<option value="3">Meters to Feet</option>
