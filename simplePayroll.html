@@ -7,7 +7,153 @@
     <h1>Simple Shopping Cart Version #2 - Using HTML Tables to Display the Cart</h1>
     <br>
     <p>
-      
+      <a href="index.html">Back to Main Page</a>
     </p>
+    <br>
+    <p>
+      <label for="itemselect">Choose an Item:</label>
+      <select id="itemselect">
+        <option value="sardines">sardines</option>
+        <option value="hotdog">hotdog</option>
+        <option value="shampoo">shampoo</option>
+        <option value="toothpaste">toothpaste</option>
+        <option value="noodles">noodles</option>
+      </select>
+      <label for="qty">Quantity:</label>
+        <input id="qty" name="qty" type="number" "=" ">
+      <label for="price">Unit Price:</label>
+        <input id="price" name="price" type="number" "="">
+      <label for="amount">Amount:</label>
+        <input id="amount" name="amount" type="number" readonly="">
+      <button id="addtocart">Add to Cart</button>
+    </p>
+    <p>
+      <label for="items">Cart Items:</label>
+      <input id="items" name="items" type="number" readonly="">
+      <button id="clearcart">Clear Cart</button>
+      <label for="delitem">Delete Item:</label>
+      <input id="delitem" name="delitem" type="number">
+      <button id="deleteitem">Delete</button>
+    </p>
+    <p id="cart"></p>
   </body>
+  <script>
+    function initcart(){
+      cart = [];
+      document.getElementById(“items”).value=cart.length;
+      document.getElementById(“cart”).innerHTML=””;
+
+    }
+    document.getElementById(“qty”).addEventListener(“keyup”,()=>
+    {computeamount();});
+    document.getElementById(“qty”).addEventListener(“price”,()=>
+    {computeamount();});
+
+    document.getElementById(“clearcart”).addEventListener(“click”,()=>
+    {
+      var toclear;
+      toclear = confirm(“Delete all item(s) from cart?”);
+      if (toclear) {
+  	    initcart();
+    }
+    ]);
+
+    document.getElementById(“addtocart”).addEventListener(“click”,()=>
+    {
+    var cartitem = {
+    	“item”:”1”,
+    	“price”:0,
+    	“qty:”:1,
+    	“itemamount” : function itemamount(){
+    		return Math.round(this.price*this.qty*100)/100;
+    	}
+    };
+    cartitem.item=document.getElementById(“itemselect”).value;
+    cartitem.qty=document.getElementById(“qty”).value;
+    cartitem.price=document.getElementById(“price”).value;
+
+    console.log(cartitem.item);
+    console.log(cartitem.qty);
+    console.log(cartitem.price);
+
+    cart.push(cartitem);
+    console.log(cart.length);
+    document.getElementById(“items”).value=cart.length;
+
+    showcart();
+    });
+    
+    
+    function computeamount() {
+          var q,p,q;
+          q = document.getElementById("qty").value*1;
+          p = document.getElementById("price").value*1;
+
+          a = Math.round(q*p*100)/100;
+          console.log(a);
+          document.getElementById("amount").value=a;
+    }    
+    
+  document.getElementById("deleteitem").addEventListener("click",()=>   
+      {
+        var todelete;
+        var itemno;
+        
+        itemno=document.getElementById("delitem").value;
+        todelete=confirm("Delete item no. "+itemno+"?");
+        if (todelete) {
+            cart.splice(itemno-1,1);
+            document.getElementById("items").value=cart.length;
+             showcart();   
+        }
+    });
+
+    function showcart(){
+        var i,l,carttext,totalamount,ln;
+        var theader,tbody,tb,tfooter;
+        theader ="<thead>";
+        theader+="<tr>";
+        theader+="<th>No.</th>";
+        theader+='<th style="text-align:left" >Item</th>';
+        theader+="<th>Quantity</th>";
+        theader+='<th style="text-align:right">Price</th>';
+        theader+="<th>Amount</th>";
+        theader+="</tr>";
+        theader+="</thead>";
+        
+        l = cart.length;
+        
+        for (i=0,totalamount=0,carttext="",tbody='';i<l;i++){
+            ln=i+1;    
+            tbody += "<tr>"
+                +'<td>'+ln+' </td>'
+                +'<td>'+cart[i].item+' </td>'
+                +'<td style="text-align:right">'+cart[i].qty+'</td>'
+                +'<td style="text-align:right">'+cart[i].price+'</td>'
+                +'<td style="text-align:right">'+cart[i].itemamount()+'</td>'                
+                +"</tr>";  
+            totalamount+=cart[i].itemamount();
+        }
+
+        tfooter ="<tfoot>";
+        tfooter+="<tr>";
+        tfooter+='<th style="text-align:left">'+cart.length+'</th>';
+        tfooter+='<th style="text-align:left">Items</th>';
+        tfooter+='<th></th>';
+        tfooter+='<th>Total Amount</th>';
+        tfooter+='<th style="text-align:right">'+totalamount+'</th>';
+        tfooter+="</tr>";
+        tfooter+="</tfoot>";
+
+       console.log(theader+tbody+tfooter);
+        document.getElementById("cart").innerHTML=
+           "<table>"+theader+tbody+tfooter+"</table>";
+
+
+    }
+  
+// Global variable
+var cart = []; 
+
+  </script>
 </html>
