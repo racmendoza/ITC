@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>PLACEHOLDER SHOPPING CART TO PAYROLL 6:55</title>
+    <title>PLACEHOLDER SHOPPING CART TO PAYROLL 6:57</title>
   </head>
   <body onload="initcart()">
     <h1>Simple Shopping Cart Version #2 - Using HTML Tables to Display the Cart</h1>
@@ -38,79 +38,115 @@
     <p id="cart"></p>
   </body>
   <script>
+
+
+
+    // Initialize cart CALLED ALSO IN BODY ONLOAD      
     function initcart(){
-      cart = [];
-      document.getElementById(“items”).value=cart.length;
-      document.getElementById(“cart”).innerHTML=””;
+        cart=[];
+        document.getElementById("items").value=cart.length;
+        document.getElementById("cart").innerHTML="";
 
+            
     }
-    document.getElementById(“qty”).addEventListener(“keyup”,()=>
-    {computeamount();});
-    document.getElementById(“qty”).addEventListener(“price”,()=>
-    {computeamount();});
 
-    document.getElementById(“clearcart”).addEventListener(“click”,()=>
-    {
-      var toclear;
-      toclear = confirm(“Delete all item(s) from cart?”);
-      if (toclear) {
-  	    initcart();
-    }
-    ]);
+    document.getElementById("qty").addEventListener("keyup",()=>   
+     {  
+        computeamount();
+     });
 
-    document.getElementById(“addtocart”).addEventListener(“click”,()=>
-    {
-    var cartitem = {
-    	“item”:”1”,
-    	“price”:0,
-    	“qty:”:1,
-    	“itemamount” : function itemamount(){
-    		return Math.round(this.price*this.qty*100)/100;
-    	}
-    };
-    cartitem.item=document.getElementById(“itemselect”).value;
-    cartitem.qty=document.getElementById(“qty”).value;
-    cartitem.price=document.getElementById(“price”).value;
+    document.getElementById("price").addEventListener("keyup",()=>   
+     {  
+        computeamount();
+     });
+  
+    // Clear Cart
+     document.getElementById("clearcart").addEventListener("click",()=>   
+       {
+        var toclear;
 
-    console.log(cartitem.item);
-    console.log(cartitem.qty);
-    console.log(cartitem.price);
+        toclear=confirm("Delete all item(s) from cart ?");
 
-    cart.push(cartitem);
-    console.log(cart.length);
-    document.getElementById(“items”).value=cart.length;
+        if (toclear) {
+             initcart();
+         }
+            
+      });
 
-    showcart();
+    // Add item to cart
+  document.getElementById("addtocart").addEventListener("click",()=>   
+       {
+        
+         var cartitem = {
+             "item": "1",
+             "price": 0,
+             "qty": 1,
+            "itemamount" : function itemamount(){
+                 return Math.round(this.price*this.qty*100)/100;  
+               }
+            };
+
+          cartitem.item=document.getElementById("itemselect").value;
+          cartitem.qty=document.getElementById("qty").value;
+          cartitem.price=document.getElementById("price").value;
+
+          console.log(cartitem.item);
+          console.log(cartitem.qty);
+          console.log(cartitem.price);
+
+
+           cart.push(cartitem);
+          //cart[cart.length]=cartitem;
+
+          console.log(cart.length);
+          document.getElementById("items").value=cart.length;
+
+          showcart();
+
     });
-    
-    
+
+    // Compute Amount per Item
     function computeamount() {
           var q,p,q;
           q = document.getElementById("qty").value*1;
           p = document.getElementById("price").value*1;
 
-          a = Math.round(q*p*100)/100;
+          a = Math.round(q*p*100)/100;  // rounds off to 2 decimal places
+
           console.log(a);
+
           document.getElementById("amount").value=a;
+        
     }    
     
+    // Delete item from chart
   document.getElementById("deleteitem").addEventListener("click",()=>   
       {
+    
         var todelete;
         var itemno;
-        
+
         itemno=document.getElementById("delitem").value;
+
         todelete=confirm("Delete item no. "+itemno+"?");
+
         if (todelete) {
+
             cart.splice(itemno-1,1);
             document.getElementById("items").value=cart.length;
              showcart();   
         }
+
     });
 
+    // Show the contents of the cart
     function showcart(){
+
         var i,l,carttext,totalamount,ln;
         var theader,tbody,tb,tfooter;
+
+    
+        // Generate table header;
         theader ="<thead>";
         theader+="<tr>";
         theader+="<th>No.</th>";
@@ -121,7 +157,9 @@
         theader+="</tr>";
         theader+="</thead>";
         
+        // Generate Table Body
         l = cart.length;
+      
         
         for (i=0,totalamount=0,carttext="",tbody='';i<l;i++){
             ln=i+1;    
@@ -131,10 +169,16 @@
                 +'<td style="text-align:right">'+cart[i].qty+'</td>'
                 +'<td style="text-align:right">'+cart[i].price+'</td>'
                 +'<td style="text-align:right">'+cart[i].itemamount()+'</td>'                
-                +"</tr>";  
+                +"</tr>";
+                       
             totalamount+=cart[i].itemamount();
+          
+
         }
 
+        //tbody += "</tbody>";
+
+        // Generate table footer;
         tfooter ="<tfoot>";
         tfooter+="<tr>";
         tfooter+='<th style="text-align:left">'+cart.length+'</th>';
@@ -154,6 +198,7 @@
   
 // Global variable
 var cart = []; 
+
 
   </script>
 </html>
