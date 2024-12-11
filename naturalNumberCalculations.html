@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+  <body>
+    <h1>Simple Calculations</h1>
+    <label for="comp">Choose a Calculation:</label>
+    <select name="comp" id="comp">
+    	<option value="1">Fahrenheit to Celsius</option>
+        <option value="2">Celsius to Fahrenheit</option>
+        <option value="3">Meters to Feet</option>
+        <option value="4">Feet to Meters</option>
+    </select>
+    <br>
+    <label>Input:</label>
+        <input type ="number" id="input">
+    <br>
+    <label>Output:</label>
+        <input type ="number" id="output" readonly>
+    <br>
+    <br>
+    <button onclick="compute()">Compute</button>
+    <br>
+    <br>
+    <a href="index.html">Back to Main Page</a>
+  </body>
+  <script>
+  	function compute()
+    {
+    	let choice, input, output;
+        choice = document.getElementById("comp").value*1;
+        input = document.getElementById("input").value*1;
+        
+        if(choice==1)
+    	{
+        	output = (input-32)/1.8;
+    	}
+    	else if(choice==2)
+    	{
+        	output = (input*1.8)+32;
+    	}
+    	else if(choice==3)
+    	{
+        	output = input * 3.28084;
+    	}
+    	else if(choice==4)
+    	{
+        	output = input/3.28084;
+    	}
+        document.getElementById("output").value = output;
+    }
+  </script>
+</html>
