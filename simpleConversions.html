@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <body>
-    <h1>Simple Conversions_A</h1>
+    <h1>Simple Conversions</h1>
     <label for="comp">Choose a Conversion:</label>
     <select name="comp" id="comp">
     	<option value="1">Fahrenheit to Celsius</option>
@@ -31,12 +31,7 @@
         
         if(choice==1)
     	{
-        	output = 1;
-          while(input>0)
-          {
-            output*=input;
-            input--;
-          }
+        	output = (input-32)/1.8;
     	}
     	else if(choice==2)
     	{
