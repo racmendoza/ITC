@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>PLACEHOLDER SHOPPING CART TO PAYROLL 7:19</title>
+    <title>PLACEHOLDER SHOPPING CART TO PAYROLL 7:32</title>
   </head>
   <body onload="initcart()">
     <h1>Simple Shopping Cart Version #2 - Using HTML Tables to Display the Cart</h1>
@@ -22,12 +22,12 @@
       <button id="addtocart">Add to Cart</button>
     </p>
     <p>
-      <label for="items">Cart Items:</label>
-      <input id="items" name="items" type="number" readonly="">
+      <label for="count>Employee Records:</label>
+      <input id="count type="number" readonly="">
       <button id="clearcart">Clear Cart</button>
-      <label for="delitem">Delete Item:</label>
-      <input id="delitem" name="delitem" type="number">
-      <button id="deleteitem">Delete</button>
+      <label for="deleteCount">Delete Employee Record:</label>
+      <input id="deleteCount"type="number">
+      <button id="confirmDelete">Delete</button>
     </p>
     <p id="cart"></p>
   </body>
@@ -38,7 +38,7 @@
     // Initialize cart CALLED ALSO IN BODY ONLOAD      
     function initcart(){
         cart=[];
-        document.getElementById("items").value=cart.length;
+        document.getElementById("count).value=cart.length;
         document.getElementById("cart").innerHTML="";
 
             
@@ -59,7 +59,7 @@
        {
         var toclear;
 
-        toclear=confirm("Delete all item(s) from cart ?");
+        toclear=confirm("Delete all Employee(s) from Record?");
 
         if (toclear) {
              initcart();
@@ -71,29 +71,29 @@
   document.getElementById("addtocart").addEventListener("click",()=>   
        {
         
-         var cartitem = {
-             "item": "1",
+         var cartno = {
+             "count": "1",
              "price": 0,
              "days": 1,
-            "itemamount" : function itemamount(){
+            "employeeCount" : function employeeCount(){
                  return Math.round(this.price*this.days*100)/100;  
                }
             };
 
-          cartitem.item=document.getElementById("name").value;
-          cartitem.days=document.getElementById("days").value;
-          cartitem.price=document.getElementById("price").value;
+          cartno.count=document.getElementById("name").value;
+          cartno.days=document.getElementById("days").value;
+          cartno.price=document.getElementById("price").value;
 
-          console.log(cartitem.item);
-          console.log(cartitem.days);
-          console.log(cartitem.price);
+          console.log(cartno.count);
+          console.log(cartno.days);
+          console.log(cartno.price);
 
 
-           cart.push(cartitem);
-          //cart[cart.length]=cartitem;
+           cart.push(cartno);
+          //cart[cart.length]=cartno;
 
           console.log(cart.length);
-          document.getElementById("items").value=cart.length;
+          document.getElementById("count).value=cart.length;
 
           showcart();
 
@@ -114,20 +114,20 @@
     }    
     
     // Delete item from chart
-  document.getElementById("deleteitem").addEventListener("click",()=>   
+  document.getElementById("confirmDelete").addEventListener("click",()=>   
       {
     
         var todelete;
-        var itemno;
+        var employeeNo;
 
-        itemno=document.getElementById("delitem").value;
+        employeeNo=document.getElementById("deleteCount").value;
 
-        todelete=confirm("Delete item no. "+itemno+"?");
+        todelete=confirm("Delete Employee No. "+employeeNo+"?");
 
         if (todelete) {
 
-            cart.splice(itemno-1,1);
-            document.getElementById("items").value=cart.length;
+            cart.splice(employeeNo-1,1);
+            document.getElementById("count).value=cart.length;
              showcart();   
         }
 
@@ -144,7 +144,7 @@
         theader ="<thead>";
         theader+="<tr>";
         theader+="<th>No.</th>";
-        theader+='<th style="text-align:left" >Item</th>';
+        theader+='<th style="text-align:left" >Employee</th>';
         theader+="<th>Days Worked</th>";
         theader+='<th style="text-align:right">Price</th>';
         theader+="<th>Amount</th>";
@@ -159,13 +159,13 @@
             ln=i+1;    
             tbody += "<tr>"
                 +'<td>'+ln+' </td>'
-                +'<td>'+cart[i].item+' </td>'
+                +'<td>'+cart[i].count+' </td>'
                 +'<td style="text-align:right">'+cart[i].days+'</td>'
                 +'<td style="text-align:right">'+cart[i].price+'</td>'
-                +'<td style="text-align:right">'+cart[i].itemamount()+'</td>'                
+                +'<td style="text-align:right">'+cart[i].employeeCount()+'</td>'                
                 +"</tr>";
                        
-            totalamount+=cart[i].itemamount();
+            totalamount+=cart[i].employeeCount();
           
 
         }
@@ -176,7 +176,7 @@
         tfooter ="<tfoot>";
         tfooter+="<tr>";
         tfooter+='<th style="text-align:left">'+cart.length+'</th>';
-        tfooter+='<th style="text-align:left">Items</th>';
+        tfooter+='<th style="text-align:left">Employees</th>';
         tfooter+='<th></th>';
         tfooter+='<th>Total Amount</th>';
         tfooter+='<th style="text-align:right">'+totalamount+'</th>';
