@@ -1,13 +1,94 @@
 <!DOCTYPE html>
 <html>
-  <body>
-    <h1>Main Page - 5_10</h1>
-    <a href="simpleConversions.html">Simple Conversions</a>
-    <br>
-    <a href="incomeTaxCalculator.html">Income Tax Calculator</a>
-    <br>
-    <a href="naturalNumberCalculations.html">Calculations using first N Natural Numbers</a>
-    <br>
-    <a href="simplePayroll.html">Simple Payroll</a>
-  </body>
-</html>
+<head>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Audiowide|Sofia|Trirong">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body {
+  font-family: "Lato", sans-serif;
+}
+
+.sidenav {
+  height: 100%;
+  width: 250px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-image: url("https://i.imgur.com/RHiqMeS.png");
+  background-repeat: repeat-y;
+  background-size: 200px 750px;
+  padding-top: 20px;
+}
+
+.sidenav a {
+  padding: 6px 8px 6px 16px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #818181;
+  display: block;
+}
+
+.sidenav a:hover {
+  color: #f1f1f1;
+}
+
+.main {
+  margin-left: 220px;
+  margin-right: 100px;
+  margin-top:100px;
+  font-size: 28px; /* Increased text to enable scrolling */
+  padding: 0px 10px;
+}
+
+body {
+  background-image: url("https://i.imgur.com/ws7eFST.png");
+  background-size: 150px 600px;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: auto auto auto;
+  gap: 10px;
+  background-color: #73636B;
+  padding: 10px;
+}
+
+.grid-container > div {
+  background-color: rgba(255, 255, 255, 0.8);
+  text-align: center;
+  padding: 20px 0;
+  font-size: 30px;
+}
+
+.item1 { grid-area: 1 / 1 / 1 / 4; }
+.item2 { grid-area: 2 / 1 / 2 / 3; }
+.item3 { grid-area: 2 / 3 / 2 / 3; }
+.item4 { grid-area: 3 / 1 / 3 / 2; }
+.item5 { grid-area: 3 / 2 / 3 / 4; }
+
+div {font-family: "Audiowide", sans-serif;}
+
+@media screen and (max-height: 600px) {
+  .sidenav {display:none;}
+  .main {
+  	margin-left:100px;
+    margin-right:100px
+    }
+}
+</style>
+</head>
+<body>
+	<div class="sidenav">
+	</div>
+	
+<div class="main">
+  <div class="grid-container">
+  <div class="item1">Ryan Anthony C. Mendoza's website of Custom-Made Calculators</div>
+  <div class="item2"><a href="simpleConversions.html">Simple Conversions</a></div>
+  <div class="item3"><a href="incomeTaxCalculator.html">Income Tax Calculator</a></div>
+  <div class="item4"><a href="simplePayroll.html">Simple Payroll</a></div>
+  <div class="item5"><a href="naturalNumberCalculations.html">Calculations of Natural Numbers</a></div>
+</div>
+   
+</body>
+</html> 
