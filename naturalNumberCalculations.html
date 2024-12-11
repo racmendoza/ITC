@@ -29,33 +29,21 @@
         input = document.getElementById("input").value*1;
         
         if(choice==1)
-        {
-          output = 1;
-          while(input>0)
-          {
-            output*=input;
-            input--;
-          }
-        }
-        else if(choice==2)
-        {
-          output = 0;
-          do
-          {
-            output+=input;
-            input--;
-          }
-          while(input>0);
-        }
-        else if(choice==3)
-        {
-          output = 0;
-          for(int x = input;x>0;x--)
-          {
-            output+=x;
-          }
-          output=output/input;
-        }
+    	{
+        	output = (input-32)/1.8;
+    	}
+    	else if(choice==2)
+    	{
+        	output = (input*1.8)+32;
+    	}
+    	else if(choice==3)
+    	{
+        	output = input * 3.28084;
+    	}
+    	else if(choice==4)
+    	{
+        	output = input/3.28084;
+    	}
         document.getElementById("output").value = output;
     }
   </script>
