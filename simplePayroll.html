@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>PLACEHOLDER SHOPPING CART TO PAYROLL 7:32</title>
+    <title>PLACEHOLDER SHOPPING CART TO PAYROLL 7:35</title>
   </head>
   <body onload="initcart()">
     <h1>Simple Shopping Cart Version #2 - Using HTML Tables to Display the Cart</h1>
@@ -22,8 +22,8 @@
       <button id="addtocart">Add to Cart</button>
     </p>
     <p>
-      <label for="count>Employee Records:</label>
-      <input id="count type="number" readonly="">
+      <label for="count">Employee Records:</label>
+      <input id="count" type="number" readonly="">
       <button id="clearcart">Clear Cart</button>
       <label for="deleteCount">Delete Employee Record:</label>
       <input id="deleteCount"type="number">
@@ -38,7 +38,7 @@
     // Initialize cart CALLED ALSO IN BODY ONLOAD      
     function initcart(){
         cart=[];
-        document.getElementById("count).value=cart.length;
+        document.getElementById("count").value=cart.length;
         document.getElementById("cart").innerHTML="";
 
             
@@ -93,7 +93,7 @@
           //cart[cart.length]=cartno;
 
           console.log(cart.length);
-          document.getElementById("count).value=cart.length;
+          document.getElementById("count").value=cart.length;
 
           showcart();
 
@@ -127,7 +127,7 @@
         if (todelete) {
 
             cart.splice(employeeNo-1,1);
-            document.getElementById("count).value=cart.length;
+            document.getElementById("count").value=cart.length;
              showcart();   
         }
 
