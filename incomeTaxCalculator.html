@@ -1,20 +1,157 @@
 <!DOCTYPE html>
 <html>
-	<body>
-    		<h1>Income Tax Calculator</h1>
-       		<label>Taxable Income:</label>
-        	<input type ="number" id="taxableInc">
+<head>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Audiowide|Sofia|Trirong">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body {
+  font-family: "Lato", sans-serif;
+}
+
+.sidenav {
+  height: 100%;
+  width: 250px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-image: url("https://i.imgur.com/RHiqMeS.png");
+  background-repeat: repeat-y;
+  background-size: 200px 750px;
+  padding-top: 20px;
+}
+
+.sidenav a {
+  padding: 6px 8px 6px 16px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #818181;
+  display: block;
+}
+
+.sidenav a:hover {
+  color: #f1f1f1;
+}
+
+.main {
+  margin-left: 220px;
+  margin-right: 100px;
+  margin-top:100px;
+  margin-bottom;100px
+  font-size: 28px; 
+  padding: 0px 10px;
+}
+
+body {
+  background-image: url("https://i.imgur.com/ws7eFST.png");
+  background-size: 150px 600px;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: auto auto auto;
+  gap: 10px;
+  background-color: #73636B;
+  padding: 10px;
+}
+
+.grid-container > div {
+  background-color: rgba(255, 255, 255, 0.8);
+  text-align: center;
+  padding: 20px 0;
+  font-size: 30px;
+}
+
+.item1 { grid-area: 1 / 1 / 1 / 1; }
+.item2 { grid-area: 1 / 2 / 2 / 8; }
+.item3 { grid-area: 2 / 1 / 2 / 8; }
+.item4 { grid-area: 3 / 1 / 3 / 2; }
+.item5 { grid-area: 3 / 2 / 3 / 8; }
+
+div {font-family: "Audiowide", sans-serif;}
+
+.button {
+  display: inline-block;
+  width:100%;
+  padding: 20px 25px;
+  font-size: 24px;
+  font-family: Audiowide;
+  cursor: pointer;
+  text-align: center;
+  outline: none;
+  color: #fff;
+  background-color: #198400;
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 9px #999;
+}
+
+.button:hover {background-color: #3e8e41}
+
+.button:active {
+  background-color: #3e8e41;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
+
+input[type="number"] {
+	padding:5px;
+    font-size:20px;
+    border: 3px solid #8C2910;
+}
+
+@media screen and (max-height: 800px) {
+.item1 { grid-area: 1 / 1 / 1 / 1; }
+.item2 { grid-area: 1 / 2 / 2 / 8; }
+.item3 { grid-area: 2 / 1 / 2 / 8; }
+.item4 { grid-area: 3 / 1 / 3 / 8; }
+.item5 { grid-area: 4 / 1 / 4 / 8; }
+}
+
+@media screen and (max-height: 600px) {
+  .sidenav {display:none;}
+  .main {
+  	margin-left:100px;
+    margin-right:100px
+    }
+  .item1 {display:none;}
+  .item2 {grid-area:2/1/2/1;}
+  .item3 {grid-area:3/1/3/1;}
+  .item4 {grid-area:4/1/4/1;}
+  .item5 {grid-area:5/1/5/1;}
+}
+</style>
+</head>
+<body>
+	<div class="sidenav">
+	</div>
+	
+<div class="main">
+  <div class="grid-container">
+  	<div class="item1">
+    	<img src="https://i.imgur.com/NRU5Wga.png" alt="Paris" width="80" height="80">
+    </div>
+ 	<div class="item2">
+    	<p style="margin:auto">Income Tax Calculator</p>
+    </div>
+    <div class="item3">
+    	<label>Taxable Income:</label>
+        <input type ="number" id="taxableInc">
     	<br>
-        	<label>Tax Payable:</label>
-        	<input type ="number" id="incomeTax" readonly>
-    	<br>
-    		<button onclick="computeTax()">Compute</button>
-	<br>
-	<br>
-	<a href="index.html">Back to Main Page</a>
-    	</body>
-    	<script>
-    		function computeTax()
+        <br>
+    	<label>Tax Payable:</label>
+        <input type ="number" id="incomeTax" readonly></div>
+    <div class="item4" style="background-color:transparent">
+    	<button onclick="computeTax()" class="button">Compute</button>
+    </div>	
+    <div class="item5">
+    	<a href="index.html">Back to Main Page</a>
+    </div>
+    
+ </div>
+</div>
+</body>
+<script>
+function computeTax()
 		{
         		let taxableInc, incomeTax;
             		taxableInc = document.getElementById("taxableInc").value*1;
@@ -44,5 +181,5 @@
     			}
             		document.getElementById("incomeTax").value = incomeTax;
             	}
-    </script>
-</html>
+</script>
+</html> 
