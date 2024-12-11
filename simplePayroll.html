@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>PLACEHOLDER SHOPPING CART TO PAYROLL 8:10</title>
+    <title>PLACEHOLDER SHOPPING CART TO PAYROLL 8:25</title>
   </head>
   <body onload="initcart()">
     <h1>Simple Shopping Cart Version #2 - Using HTML Tables to Display the Cart</h1>
@@ -55,6 +55,11 @@
      {  
         grosspaymentcomputation();
      });
+
+    document.getElementById("ddx").addEventListener("keyup",()=>   
+     {  
+        netpaymentcomputation();
+     });
   
     // Clear Cart
      document.getElementById("clearcart").addEventListener("click",()=>   
@@ -77,8 +82,11 @@
              "count": "1",
              "rate": 0,
              "days": 1,
-            "employeeCount" : function employeeCount(){
+            "grossPay" : function grossPay(){
                  return Math.round(this.rate*this.days*100)/100;  
+               }
+            "netPay" : function netPay(){
+                 return Math.round((this.grossPay-this.ddx)*100)/100;
                }
             };
 
@@ -101,7 +109,7 @@
 
     });
 
-    // Compute Net Pay per Item
+    // Compute Gross Pay per Item
     function grosspaymentcomputation() {
           var d,p,a;
           d = document.getElementById("days").value*1;
@@ -112,7 +120,19 @@
           console.log(a);
 
           document.getElementById("grossPay").value=a;
-        
+          netpaymentcomputation();
+    }
+    // Compute Net Pay per Item
+    function netpaymentcomputation() {
+          var x,y,z;
+          x = document.getElementById("grossPay").value*1;
+          y = document.getElementById("ddx").value*1;
+
+          z = Math.round((x-y)*100)/100; //rounds off to 2 decimal places
+
+          console.log(z);
+
+          document.getElementById("netPay").value=z;
     }    
     
     // Delete item from chart
@@ -138,52 +158,39 @@
     // Show the contents of the cart
     function showcart(){
 
-        var i,l,carttext,totalpay,ln;
+        var i,l,carttext,ln;
         var theader,tbody,tb;
 
     
         // Generate table header;
         theader ="<thead>";
-        theader+="<tr>";
-        theader+="<th>No.</th>";
-        theader+='<th style="text-align:center" >Employee</th>';
-        theader+="<th>Days Worked</th>";
-        theader+='<th style="text-align:center">Rate</th>';
-        theader+="<th>Net Pay</th>";
-        theader+="</tr>";
+          theader+="<tr>";
+            theader+="<th>No.</th>";
+            theader+='<th style="text-align:center">Employee</th>';
+            theader+="<th>Days Worked</th>";
+            theader+='<th style="text-align:center">Rate</th>';
+            theader+="<th>Gross Pay</th>";
+            theader+='<th style="text-align:center">Deduction</th>';
+            theader+="<th>Net Pay</th>";
+          theader+="</tr>";
         theader+="</thead>";
         
         // Generate Table Body
         l = cart.length;
       
         
-        for (i=0,totalpay=0,carttext="",tbody='';i<l;i++){
+        for (i=0,carttext="",tbody='';i<l;i++){
             ln=i+1;    
             tbody += "<tr>"
                 +'<td>'+ln+' </td>'
                 +'<td>'+cart[i].count+' </td>'
-                +'<td style="text-align:right">'+cart[i].days+'</td>'
-                +'<td style="text-align:right">'+cart[i].rate+'</td>'
-                +'<td style="text-align:right">'+cart[i].employeeCount()+'</td>'                
+                +'<td style="text-align:center">'+cart[i].days+'</td>'
+                +'<td style="text-align:center">'+cart[i].rate+'</td>'
+                +'<td style="text-align:center">'+cart[i].grossPay()+'</td>'
+                +'<td style="text-align:center">'+cart[i].ddx()+'</td>'
+                +'<td style="text-align:center">'+cart[i].netPay()+'</td>'
                 +"</tr>";
-                       
-            totalpay+=cart[i].employeeCount();
-          
-
         }
-
-        //tbody += "</tbody>";
-
-        // Generate table footer;
-        //tfooter ="<tfoot>";
-        //tfooter+="<tr>";
-        //tfooter+='<th style="text-align:left">'+cart.length+'</th>';
-        //tfooter+='<th style="text-align:left">Employees</th>';
-        //tfooter+='<th></th>';
-        //tfooter+='<th>Total Net Pay</th>';
-        //tfooter+='<th style="text-align:right">'+totalpay+'</th>';
-        //tfooter+="</tr>";
-        //tfooter+="</tfoot>";
 
        console.log(theader+tbody);
         document.getElementById("cart").innerHTML=
