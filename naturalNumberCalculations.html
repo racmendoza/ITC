@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <body>
-    <h1>Calculations using the first N Natural Numbers</h1>
+    <h1>Calculations using the first N Natural Numbers_2_13</h1>
     <label for="comp">What would you like to calculate?</label>
     <select name="comp" id="comp">
     	<option value="1">Factorial</option>
@@ -30,7 +30,12 @@
         
         if(choice==1)
     	{
-        	output = (input-32)/1.8;
+        	output = 1;
+          while(input>0)
+          {
+            output*=input;
+            input--;
+          }
     	}
     	else if(choice==2)
     	{
